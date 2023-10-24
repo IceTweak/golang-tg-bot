@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<companies> 
+    <company category="it"> 
+        <title>CompetentIT</title> 
+        <owner>Kirill Shantin</owner> 
+        <year>2011</year>
+        <links>
+            <link name="facebook">https://facebook.com</link>
+            <link name="twitter">https://twitter.com</link>
+            <link name="youtube">https://youtube.com</link>
+        </links>
+    </company> 
+    <company category="sales"> 
+        <title>Prodai Ili Umri</title> 
+        <owner>Ivan Ivanov</owner> 
+        <year>2016</year>
+        <links>
+            <link name="facebook">https://facebook.com</link>
+            <link name="twitter">https://twitter.com</link>
+            <link name="youtube">https://youtube.com</link>
+        </links>
+    </company> 
+    <company category="manufacturer"> 
+        <title>Zavod</title> 
+        <owner>Vladimir Lenin</owner> 
+        <year>1920</year>
+        <links>
+            <link name="facebook">https://facebook.com</link>
+            <link name="twitter">https://twitter.com</link>
+            <link name="youtube">https://youtube.com</link>
+        </links>
+    </company>
+    <company category="advertise"> 
+        <title>Reklama Za 500k $</title> 
+        <owner>Artemiy Lebedev</owner> 
+        <year>2010</year>
+        <links>
+            <link name="facebook">https://facebook.com</link>
+            <link name="twitter">https://twitter.com</link>
+            <link name="youtube">https://youtube.com</link>
+        </links>
+    </company> 
+</companies>

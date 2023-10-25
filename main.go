@@ -1,4 +1,4 @@
-package golangtgbot
+package main
 
 import (
 	"fmt"
@@ -38,6 +38,25 @@ func main() {
 	companies := ParseCompFromXml("companies.xml")
 
 	for update := range updates {
+		chat := update.FromChat()
+		// TODO - error occurs here
+		if chat.IsChannel() || chat.IsGroup() {
+			if botAsMember, err := bot.GetChatMember(tgbotapi.GetChatMemberConfig{
+				ChatConfigWithUser: tgbotapi.ChatConfigWithUser{
+					ChatID: chat.ID,
+					UserID: bot.Self.ID,
+				},
+			}); !botAsMember.IsAdministrator() {
+				msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
+				msg.Text = "To continue working with me, you need to grant me administrator rights. Thanks!"
+				if _, err := bot.Send(msg); err != nil {
+					log.Panic(err)
+				}
+				continue
+			} else if err != nil {
+				log.Println(err)
+			}
+		}
 		if update.Message == nil && update.InlineQuery != nil { // If we got a message
 			// Process query
 			query := update.InlineQuery.Query
@@ -56,9 +75,9 @@ func main() {
 				for _, comp := range filteredCompanies {
 					text := fmt.Sprintf(
 						"*%s*\n"+
-							"*Category* _%s_\n"+
-							"*Year* _%s_\n"+
-							"*Owner* _%s_\n"+
+							"*Category:* _%s_\n"+
+							"*Year:* _%s_\n"+
+							"*Owner:* _%s_\n"+
 							"*Social links:* \n"+
 							"%s",
 						comp.Title,
@@ -87,9 +106,33 @@ func main() {
 				log.Println(err)
 			}
 
+		} else if update.Message.IsCommand() {
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
+			switch update.Message.Command() {
+			case "pin":
+				pinConfig := tgbotapi.PinChatMessageConfig{
+					ChatID:              chat.ID,
+					ChannelUsername:     update.Message.From.UserName,
+					MessageID:           update.Message.MessageID,
+					DisableNotification: false,
+				}
+				if _, err := bot.Request(pinConfig); err != nil {
+					log.Println(err)
+				}
+				msg.Text = "Succsessfully pin your message!"
+			case "sayhi":
+				msg.Text = "Hi :)"
+			case "status":
+				msg.Text = "I'm ok."
+			default:
+				msg.Text = "I don't know that command"
+			}
+
+			if _, err := bot.Send(msg); err != nil {
+				log.Panic(err)
+			}
 		} else {
-			// Logic for comand input
-			fmt.Println("GGWP")
+			fmt.Println("None of the message types handled!")
 		}
 	}
 }

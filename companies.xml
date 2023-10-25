@@ -39,5 +39,305 @@
             <link name="twitter">https://twitter.com</link>
             <link name="youtube">https://youtube.com</link>
         </links>
-    </company> 
+    </company>
+    <company category="manufacturer"> 
+        <title>ABC Manufacturing</title> 
+        <owner>John Smith</owner> 
+        <year>2005</year>
+        <links>
+            <link name="facebook">https://facebook.com/abcmanufacturing</link>
+            <link name="twitter">https://twitter.com/abcmanufacturing</link>
+            <link name="youtube">https://youtube.com/abcmanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>XYZ Corporation</title> 
+        <owner>Jane Doe</owner> 
+        <year>1998</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzcorporation</link>
+            <link name="twitter">https://twitter.com/xyzcorporation</link>
+            <link name="youtube">https://youtube.com/xyzcorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Acme Industries</title> 
+        <owner>Michael Johnson</owner> 
+        <year>2010</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmeindustries</link>
+            <link name="twitter">https://twitter.com/acmeindustries</link>
+            <link name="youtube">https://youtube.com/acmeindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>XYZ Manufacturing</title> 
+        <owner>David Wilson</owner> 
+        <year>2002</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzmanufacturing</link>
+            <link name="twitter">https://twitter.com/xyzmanufacturing</link>
+            <link name="youtube">https://youtube.com/xyzmanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>PQR Enterprises</title> 
+        <owner>Linda Thompson</owner> 
+        <year>1995</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqrenterprises</link>
+            <link name="twitter">https://twitter.com/pqrenterprises</link>
+            <link name="youtube">https://youtube.com/pqrenterprises</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>ABC Corporation</title> 
+        <owner>Robert Davis</owner> 
+        <year>2015</year>
+        <links>
+            <link name="facebook">https://facebook.com/abccorporation</link>
+            <link name="twitter">https://twitter.com/abccorporation</link>
+            <link name="youtube">https://youtube.com/abccorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>XYZ Industries</title> 
+        <owner>Karen Johnson</owner> 
+        <year>2007</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzindustries</link>
+            <link name="twitter">https://twitter.com/xyzindustries</link>
+            <link name="youtube">https://youtube.com/xyzindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>RA Manufacturing</title> 
+        <owner>Richard Anderson</owner> 
+        <year>1999</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmemanufacturing</link>
+            <link name="twitter">https://twitter.com/acmemanufacturing</link>
+            <link name="youtube">https://youtube.com/acmemanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>MNO Corporation</title> 
+        <owner>Emily Brown</owner> 
+        <year>2012</year>
+        <links>
+            <link name="facebook">https://facebook.com/mnocorporation</link>
+            <link name="twitter">https://twitter.com/mnocorporation</link>
+            <link name="youtube">https://youtube.com/mnocorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>PQR Manufacturing</title> 
+        <owner>Michael Davis</owner> 
+        <year>2004</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqermanufacturing</link>
+            <link name="twitter">https://twitter.com/pqermanufacturing</link>
+            <link name="youtube">https://youtube.com/pqermanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>ABC Enterprises</title> 
+        <owner>Sarah Johnson</owner> 
+        <year>1997</year>
+        <links>
+            <link name="facebook">https://facebook.com/abcenterprises</link>
+            <link name="twitter">https://twitter.com/abcenterprises</link>
+            <link name="youtube">https://youtube.com/abcenterprises</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Wilson Company</title> 
+        <owner>Thomas Wilson</owner> 
+        <year>2018</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzmanufacturing</link>
+            <link name="twitter">https://twitter.com/xyzmanufacturing</link>
+            <link name="youtube">https://youtube.com/xyzmanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Hannah Industries</title> 
+        <owner>Hannah Thompson</owner> 
+        <year>2003</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmeindustries</link>
+            <link name="twitter">https://twitter.com/acmeindustries</link>
+            <link name="youtube">https://youtube.com/acmeindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>PQR Corporation</title> 
+        <owner>John Anderson</owner> 
+        <year>2001</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqrcorporation</link>
+            <link name="twitter">https://twitter.com/pqrcorporation</link>
+            <link name="youtube">https://youtube.com/pqrcorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>MNO Industries</title> 
+        <owner>Samantha Brown</owner> 
+        <year>2008</year>
+        <links>
+            <link name="facebook">https://facebook.com/mnoindustries</link>
+            <link name="twitter">https://twitter.com/mnoindustries</link>
+            <link name="youtube">https://youtube.com/mnoindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>W&J Manufacturing</title> 
+        <owner>William Johnson</owner> 
+        <year>2014</year>
+        <links>
+            <link name="facebook">https://facebook.com/abcmanufacturing</link>
+            <link name="twitter">https://twitter.com/abcmanufacturing</link>
+            <link name="youtube">https://youtube.com/abcmanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>AMT Enterprises</title> 
+        <owner>Amy Davis</owner> 
+        <year>2006</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzenterprises</link>
+            <link name="twitter">https://twitter.com/xyzenterprises</link>
+            <link name="youtube">https://youtube.com/xyzenterprises</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>DW Manufacturing</title> 
+        <owner>Daniel Wilson</owner> 
+        <year>2000</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmemanufacturing</link>
+            <link name="twitter">https://twitter.com/acmemanufacturing</link>
+            <link name="youtube">https://youtube.com/acmemanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Olivia Thompson Industries</title> 
+        <owner>Olivia Thompson</owner> 
+        <year>2011</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqrindustries</link>
+            <link name="twitter">https://twitter.com/pqrindustries</link>
+            <link name="youtube">https://youtube.com/pqrindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Davis Group</title> 
+        <owner>Alexander Davis</owner> 
+        <year>2009</year>
+        <links>
+            <link name="facebook">https://facebook.com/mnomanufacturing</link>
+            <link name="twitter">https://twitter.com/mnomanufacturing</link>
+            <link name="youtube">https://youtube.com/mnomanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>ABC Corp</title> 
+        <owner>Evelyn Johnson</owner> 
+        <year>2007</year>
+        <links>
+            <link name="facebook">https://facebook.com/abccorporation</link>
+            <link name="twitter">https://twitter.com/abccorporation</link>
+            <link name="youtube">https://youtube.com/abccorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>XYZ Wilson</title> 
+        <owner>James Wilson</owner> 
+        <year>2019</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzindustries</link>
+            <link name="twitter">https://twitter.com/xyzindustries</link>
+            <link name="youtube">https://youtube.com/xyzindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>MiT Industries</title> 
+        <owner>Mia Thompson</owner> 
+        <year>2004</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmeindustries</link>
+            <link name="twitter">https://twitter.com/acmeindustries</link>
+            <link name="youtube">https://youtube.com/acmeindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Anderson Corporation</title> 
+        <owner>Christopher Anderson</owner> 
+        <year>2002</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqrcorporation</link>
+            <link name="twitter">https://twitter.com/pqrcorporation</link>
+            <link name="youtube">https://youtube.com/pqrcorporation</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>MNO Industrial Inc.</title> 
+        <owner>Victoria Brown</owner> 
+        <year>2005</year>
+        <links>
+            <link name="facebook">https://facebook.com/mnoindustries</link>
+            <link name="twitter">https://twitter.com/mnoindustries</link>
+            <link name="youtube">https://youtube.com/mnoindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>M&J Manufacturing</title> 
+        <owner>Matthew Johnson</owner> 
+        <year>2016</year>
+        <links>
+            <link name="facebook">https://facebook.com/abcmanufacturing</link>
+            <link name="twitter">https://twitter.com/abcmanufacturing</link>
+            <link name="youtube">https://youtube.com/abcmanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>XYZ Enterprises</title> 
+        <owner>Emma Davis</owner> 
+        <year>2008</year>
+        <links>
+            <link name="facebook">https://facebook.com/xyzenterprises</link>
+            <link name="twitter">https://twitter.com/xyzenterprises</link>
+            <link name="youtube">https://youtube.com/xyzenterprises</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>Acme Manufacturing</title> 
+        <owner>Nathan Wilson</owner> 
+        <year>2001</year>
+        <links>
+            <link name="facebook">https://facebook.com/acmemanufacturing</link>
+            <link name="twitter">https://twitter.com/acmemanufacturing</link>
+            <link name="youtube">https://youtube.com/acmemanufacturing</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>PQR Industries</title> 
+        <owner>Grace Thompson</owner> 
+        <year>2013</year>
+        <links>
+            <link name="facebook">https://facebook.com/pqrindustries</link>
+            <link name="twitter">https://twitter.com/pqrindustries</link>
+            <link name="youtube">https://youtube.com/pqrindustries</link>
+        </links>
+    </company>
+    <company category="manufacturer"> 
+        <title>MNO Manufacturing</title> 
+        <owner>Andrew Davis</owner> 
+        <year>2010</year>
+        <links>
+            <link name="facebook">https://facebook.com/mnomanufacturing</link>
+            <link name="twitter">https://twitter.com/mnomanufacturing</link>
+            <link name="youtube">https://youtube.com/mnomanufacturing</link>
+        </links>
+    </company>
 </companies>

@@ -1,4 +1,4 @@
-package golangtgbot
+package main
 
 import (
 	"encoding/xml"
@@ -29,7 +29,7 @@ type Links struct {
 type Link struct {
 	XMLName xml.Name `xml:"link"`
 	Name    string   `xml:"name,attr"`
-	Href    string   `xml:"link"`
+	Href    string   `xml:",chardata"`
 }
 
 func ParseCompFromXml(xmlPath string) Companies {

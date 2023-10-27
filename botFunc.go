@@ -9,8 +9,8 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
-func SendMessage(bot tgbotapi.BotAPI, update tgbotapi.Update, text string) {
-	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
+func SendMessage(bot tgbotapi.BotAPI, chatId int64, text string) {
+	msg := tgbotapi.NewMessage(chatId, text)
 	if _, err := bot.Send(msg); err != nil {
 		log.Panic(err)
 	}

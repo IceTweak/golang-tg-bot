@@ -8,19 +8,13 @@ import (
 	godotenv "github.com/joho/godotenv"
 )
 
-/**
-* TODO: /pin command need to take 2 arguments:
-* 1) Message text that's need to be pinned to chat(-s)
-* 2) List of chats:
-*	TODO: how to handle chats (ids, links, etc.)?
-Then it's needed to print chats where bot is not an admin
-*/
-
 // TODO: ability to add media (photo, video, etc.) to pinned message in /pin command
 
 // TODO: realize command palette (e.g. buttons with commands names)
 
 // TODO: add description to commands
+
+// TODO: fix "not a command" message after inline response
 
 func initEnvVars() {
 
@@ -47,27 +41,21 @@ func main() {
 	u.Timeout = 60
 
 	updates := bot.GetUpdatesChan(u)
-	botChats := make(map[int64]int64)
 
 	for update := range updates {
 		if update.Message == nil && update.InlineQuery != nil {
 			HandleInlineMode(*bot, update)
-		} else if update.Message != nil && update.Message.IsCommand() &&
-			CheckAdminRole(*bot, update.FromChat().ID) {
+		} else if update.Message != nil && update.Message.IsCommand() {
 
 			switch update.Message.Command() {
 			case "pin":
-				PinMessage(*bot, update, botChats)
+				PinMessage(*bot, update)
 			default:
 				SendMessage(*bot, update.FromChat().ID, "I don't know that command")
 			}
 
-		} else if update.Message != nil && len(update.Message.NewChatMembers) > 0 {
-			chat := update.FromChat()
-			log.Println("Bot is added to group")
-			botChats[chat.ID] = chat.ID
 		} else {
-			log.Println("None of the message types handled!")
+			SendMessage(*bot, update.FromChat().ID, "I can't understand you. Type /help to see all available commands")
 		}
 	}
 }

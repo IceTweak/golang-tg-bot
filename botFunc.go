@@ -7,7 +7,10 @@ import (
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	lo "github.com/samber/lo"
 )
+
+// TODO: need to add -100 to channels and group IDs for bot
 
 func SendMessage(bot tgbotapi.BotAPI, chatId int64, text string) {
 	msg := tgbotapi.NewMessage(chatId, text)
@@ -16,6 +19,7 @@ func SendMessage(bot tgbotapi.BotAPI, chatId int64, text string) {
 	}
 }
 
+// Answer inline requests
 func HandleInlineMode(bot tgbotapi.BotAPI, update tgbotapi.Update) {
 	// Parse Companies from file
 	companies := ParseCompFromXml("companies.xml")
@@ -69,8 +73,9 @@ func HandleInlineMode(bot tgbotapi.BotAPI, update tgbotapi.Update) {
 	}
 }
 
-// Checks if the bot has an administrator role
-func CheckAdminRole(bot tgbotapi.BotAPI, chatId int64) bool {
+// Checks if the bot has an ability to pin messages
+func CheckPinAbility(bot tgbotapi.BotAPI, chatId int64) bool {
+	// Get tgbotapi.Chat from chatId
 	chat, err := bot.GetChat(tgbotapi.ChatInfoConfig{
 		ChatConfig: tgbotapi.ChatConfig{
 			ChatID: chatId,
@@ -78,9 +83,12 @@ func CheckAdminRole(bot tgbotapi.BotAPI, chatId int64) bool {
 	})
 
 	if err != nil {
-		log.Println(err)
+		return false
+		// log.Println("Cannot parse this chat because not a member")
+		// log.Println(err)
 	}
 
+	// Boolean filter, only for chats - not for direct messages to the Bot
 	isPrivGroupOrChan := (chat.IsGroup() || chat.IsChannel()) && chat.IsPrivate()
 	isPubGroupOrChan := chat.IsGroup() || chat.IsChannel()
 
@@ -90,17 +98,7 @@ func CheckAdminRole(bot tgbotapi.BotAPI, chatId int64) bool {
 				ChatID: chat.ChatConfig().ChatID,
 				UserID: bot.Self.ID,
 			},
-		}); !botAsMember.IsAdministrator() {
-			// msg := tgbotapi.NewMessage(chat.ChatConfig().ChatID, "")
-			// msg.Text = fmt.Sprintf(
-			// 	"%s\n%s",
-			// 	"To continue working with me in group or channel,",
-			// 	"please grant me administrator rights. Thanks!",
-			// )
-
-			// if _, err := bot.Send(msg); err != nil {
-			// 	log.Println(err)
-			// }
+		}); !botAsMember.CanPinMessages {
 			return false
 		} else if err != nil {
 			log.Println(err)
@@ -109,17 +107,17 @@ func CheckAdminRole(bot tgbotapi.BotAPI, chatId int64) bool {
 	return true
 }
 
-// Handles /pin command
-func PinMessage(bot tgbotapi.BotAPI, update tgbotapi.Update, botChats map[int64]int64) {
+// Process /pin command
+func PinMessage(bot tgbotapi.BotAPI, update tgbotapi.Update) {
 	currChat := update.FromChat()
-	pinText := update.Message.CommandArguments()
+	pinText, botChats := parsePinCommand(update.Message.CommandArguments())
 	msg := tgbotapi.NewMessage(currChat.ChatConfig().ChatID, "")
 
 	if len(pinText) == 0 {
 		msg.Text = fmt.Sprintf(
 			"%s\n\n%s",
 			"To use the /pin command correctly, enter the text of the message, with a space before the text, for example:",
-			"/pin <The text to be pinned>",
+			"/pin The text to be pinned... [Chats] first-id, second-id",
 		)
 		if _, err := bot.Send(msg); err != nil {
 			log.Println(err)
@@ -128,13 +126,12 @@ func PinMessage(bot tgbotapi.BotAPI, update tgbotapi.Update, botChats map[int64]
 	}
 
 	if len(botChats) > 0 {
-		var chatsWithoutAdminRole []string
+		var chatsWithoutPinAbility []string
 
-		// Iterating through chats where bot is a member
 		for _, chatId := range botChats {
 
-			if !CheckAdminRole(bot, chatId) {
-				chatsWithoutAdminRole = append(chatsWithoutAdminRole, strconv.Itoa(int(chatId)))
+			if !CheckPinAbility(bot, chatId) {
+				chatsWithoutPinAbility = append(chatsWithoutPinAbility, strconv.Itoa(int(chatId)))
 			} else {
 				pinMsg := tgbotapi.NewMessage(chatId, "")
 				pinMsg.Text = pinText
@@ -157,10 +154,10 @@ func PinMessage(bot tgbotapi.BotAPI, update tgbotapi.Update, botChats map[int64]
 			}
 		}
 
-		if len(chatsWithoutAdminRole) > 0 {
+		if len(chatsWithoutPinAbility) > 0 {
 			msg.Text = fmt.Sprintf(
-				"Some chats are not provied Administrator role for me (below are the chat IDs):\n%s",
-				strings.Join(chatsWithoutAdminRole, "\n"),
+				"Some chats are not add bot to the chat or not provied ability to pin messages for me (below are the chat IDs):\n%s",
+				strings.Join(chatsWithoutPinAbility, "\n"),
 			)
 			if _, err := bot.Send(msg); err != nil {
 				log.Println(err)
@@ -172,4 +169,21 @@ func PinMessage(bot tgbotapi.BotAPI, update tgbotapi.Update, botChats map[int64]
 			log.Println(err)
 		}
 	}
+}
+
+// Parse /pin command arguments and returns it
+func parsePinCommand(command string) (string, []int64) {
+	options := strings.Split(command, "[Chats] ")
+	if len(options) != 2 {
+		return "", []int64{}
+	}
+	strChatIds := strings.Split(options[1], ",")
+	chatIds := lo.Map(strChatIds, func(item string, _ int) int64 {
+		id, err := strconv.Atoi(item)
+		if err != nil {
+			log.Println(err)
+		}
+		return int64(id)
+	})
+	return options[0], chatIds
 }

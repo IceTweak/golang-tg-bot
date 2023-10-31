@@ -1,2 +1,5 @@
 # Environment variables
 .env
+
+# Configuration file
+/cmd/golang-tg-bot/config.yaml

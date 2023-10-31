@@ -1,11 +1,13 @@
 package model
 
-import tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+import (
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+)
 
 // Local object with the necessary data to work on updates coming from Telegram
 type UpdateLocal struct {
-	TelegramUserID TelegramUserID
-	TelegramChatID TelegramChatID
+	TelegramUserID int64
+	TelegramChatID int64
 	CallbackData   CallbackData
 }
 
@@ -19,8 +21,8 @@ func DecodeToLocal(upd tgbotapi.Update) *UpdateLocal {
 		cData = *cDataBot.Decode()
 	}
 	return &UpdateLocal{
-		TelegramUserID: TelegramUserID(tgUser.ID),
-		TelegramChatID: TelegramChatID(tgChat.ID),
+		TelegramUserID: tgUser.ID,
+		TelegramChatID: tgChat.ID,
 		CallbackData:   cData,
 	}
 }

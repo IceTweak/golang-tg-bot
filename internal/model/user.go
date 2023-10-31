@@ -4,13 +4,8 @@ import (
 	"time"
 )
 
-type (
+type UserProfile struct {
 	TelegramUserID int64
 	TelegramChatID int64
-)
-
-type UserProfile struct {
-	TelegramUserID TelegramUserID
-	TelegramChatID TelegramChatID
 	CreatedAt      time.Time
 }

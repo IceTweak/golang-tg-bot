@@ -5,8 +5,8 @@ import tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 type (
 	CommandKey    string
 	CommandEntity struct {
-		Key  CommandKey
-		Name string
+		Key         CommandKey
+		Description string
 	}
 	BotCommands struct {
 		Config   tgbotapi.SetMyCommandsConfig

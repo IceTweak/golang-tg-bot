@@ -98,8 +98,8 @@ func (bot *Bot) SetWebhook() error {
 func (bot *Bot) InitBotCommands() tgbotapi.SetMyCommandsConfig {
 	commands := []model.CommandEntity{
 		{
-			Key:  model.PinCommand,
-			Name: "pin",
+			Key:         model.PinCommand,
+			Description: "pins written message to the several chats",
 		},
 		/* implement your commands in the same way
 		{
@@ -113,7 +113,7 @@ func (bot *Bot) InitBotCommands() tgbotapi.SetMyCommandsConfig {
 	for _, cmd := range commands {
 		tgCommands = append(tgCommands, tgbotapi.BotCommand{
 			Command:     "/" + string(cmd.Key),
-			Description: cmd.Name,
+			Description: cmd.Description,
 		})
 	}
 	commandsConfig := tgbotapi.NewSetMyCommands(tgCommands...)

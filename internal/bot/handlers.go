@@ -16,10 +16,9 @@ import (
 )
 
 func (bot *Bot) UpdateRouter(update tgbotapi.Update) {
-	updLocal := model.DecodeToLocal(update)
 	if msg := update.Message; msg != nil {
 		if msg.IsCommand() {
-			bot.SendMessage(bot.CommandsHandler(update.Message.Command(), update.Message, updLocal))
+			bot.SendMessage(bot.CommandsHandler(update.Message.Command(), update))
 		} else {
 			bot.SendMessage(bot.MessageHandler(update))
 		}
@@ -32,16 +31,19 @@ func (bot *Bot) UpdateRouter(update tgbotapi.Update) {
 	// }
 }
 
-func (bot *Bot) CommandsHandler(command string, message *tgbotapi.Message, updLocal *model.UpdateLocal) tgbotapi.Chattable {
+func (bot *Bot) CommandsHandler(command string, update tgbotapi.Update) tgbotapi.Chattable {
+	updLocal := model.DecodeToLocal(update)
+	msg := update.Message
 	/*
 		your commands processing logic should be here
 		return <message>
 	*/
 	switch command {
-	case "/pin":
-		return bot.pinMessage(updLocal, message)
+	case "pin":
+		return bot.pinMessage(updLocal, msg)
+	default:
+		return commonanswers.UnknownCommand().BuildBotMessage(updLocal.TelegramChatID)
 	}
-	return commonanswers.UnknownCommand().BuildBotMessage(int64(updLocal.TelegramChatID))
 }
 
 func (bot *Bot) MessageHandler(update tgbotapi.Update) tgbotapi.Chattable {
@@ -50,7 +52,7 @@ func (bot *Bot) MessageHandler(update tgbotapi.Update) tgbotapi.Chattable {
 		your message processing logic should be here
 		return <message>
 	*/
-	return commonanswers.UnknownMessage().BuildBotMessage(int64(updLocal.TelegramChatID))
+	return commonanswers.UnknownMessage().BuildBotMessage(updLocal.TelegramChatID)
 }
 
 // TODO:
@@ -67,7 +69,7 @@ func (bot *Bot) MessageHandler(update tgbotapi.Update) tgbotapi.Chattable {
 // Answer inline requests
 func (bot *Bot) InlineQueryHandler(inlineQuery tgbotapi.InlineQuery) tgbotapi.Chattable {
 	// Parse Companies from file
-	companies := parser.ParseCompFromXml("../../parser/companies.xml")
+	companies := parser.ParseCompFromXml("./internal/parser/companies.xml")
 
 	// Filter companies along query
 	filteredCompanies := parser.Filter(companies.Companies, func(comp parser.Company) bool {
@@ -123,9 +125,7 @@ func (bot *Bot) checkPinAbility(chatId int64) bool {
 	})
 
 	if err != nil {
-		return false
-		// log.Println("Cannot parse this chat because not a member")
-		// log.Println(err)
+		bot.Logger.Error("failed to get chat from provided chat ID", zap.String("error", err.Error()))
 	}
 
 	// Boolean filter, only for chats - not for direct messages to the Bot
@@ -135,7 +135,7 @@ func (bot *Bot) checkPinAbility(chatId int64) bool {
 	if isPrivGroupOrChan || isPubGroupOrChan || chat.IsSuperGroup() {
 		if botAsMember, err := bot.API.GetChatMember(tgbotapi.GetChatMemberConfig{
 			ChatConfigWithUser: tgbotapi.ChatConfigWithUser{
-				ChatID: chat.ChatConfig().ChatID,
+				ChatID: chatId,
 				UserID: bot.API.Self.ID,
 			},
 		}); !botAsMember.CanPinMessages {
@@ -196,12 +196,9 @@ func (bot *Bot) pinMessage(update *model.UpdateLocal, message *tgbotapi.Message)
 			)
 			return msg
 		}
-
-		msg.Text = "Successfully pin your message to chats!"
-		return msg
 	}
 
-	msg.Text = "Bot is not added to any group for now :("
+	msg.Text = "Successfully pin your message to chats!"
 	return msg
 }
 

@@ -12,13 +12,7 @@ import (
 
 // TODO: ability to add media (photo, video, etc.) to pinned message in /pin command
 
-// TODO: realize command palette (e.g. buttons with commands names)
-
-// TODO: add description to commands
-
-// TODO: fix "not a command" message after inline response
-
-// TODO: need to add -100 to channels and group IDs for bot
+// TODO: need to answer to direct messages to the bo bot
 
 func main() {
 	configPath := flag.String("c", "./cmd/golang-tg-bot/config.yaml", "path to go-telegram-bot-example config")

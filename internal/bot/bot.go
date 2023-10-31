@@ -38,9 +38,12 @@ func (bot *Bot) Run() {
 	}
 	bot.API = botAPI
 
-	if err := bot.SetWebhook(); err != nil {
-		bot.Logger.Fatal("failed set webhook", zap.String("error", err.Error()))
-	}
+	// !!! THERE IS NO WEBHOOK SERVER FOR NOW
+	// if err := bot.SetWebhook(); err != nil {
+	// 	bot.Logger.Fatal("failed set webhook", zap.String("error", err.Error()))
+	// }
+	// !!!
+
 	if err := bot.SetBotCommands(); err != nil {
 		bot.Logger.Fatal("failed set bot commands", zap.String("error", err.Error()))
 	}

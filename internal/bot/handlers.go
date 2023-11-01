@@ -81,7 +81,6 @@ func (bot *Bot) InlineQueryHandler(inlineQuery tgbotapi.InlineQuery) tgbotapi.Ch
 		msg := tgbotapi.NewInlineQueryResultArticleMarkdown(inlineQuery.ID, "No one companies matches", "No one companies matches")
 		articles = append(articles, msg)
 	} else {
-		var i = 0
 		for _, comp := range filteredCompanies {
 			text := fmt.Sprintf(
 				"*%s*\n"+
@@ -98,10 +97,9 @@ func (bot *Bot) InlineQueryHandler(inlineQuery tgbotapi.InlineQuery) tgbotapi.Ch
 			)
 
 			msg := tgbotapi.NewInlineQueryResultArticleMarkdown(comp.Title, comp.Title, text)
+			msg.ThumbURL = "https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31"
+			msg.ThumbHeight, msg.ThumbWidth = 600, 600
 			articles = append(articles, msg)
-			if i >= 5 {
-				break
-			}
 		}
 	}
 

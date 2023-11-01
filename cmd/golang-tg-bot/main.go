@@ -12,7 +12,7 @@ import (
 
 // TODO: ability to add media (photo, video, etc.) to pinned message in /pin command
 
-// TODO: need to answer to direct messages to the bo bot
+// TODO: need to answer only to direct messages to the bo bot
 
 func main() {
 	configPath := flag.String("c", "./cmd/golang-tg-bot/config.yaml", "path to go-telegram-bot-example config")
@@ -30,7 +30,6 @@ func main() {
 
 	logger.Info("configured", zap.Any("config", cfg))
 
-	// Init bot
 	bot := bot.Init(cfg, &logger)
 
 	bot.Run()
